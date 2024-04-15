@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-container input {
+  transition: border-color 0.3s ease-in-out;
+}
