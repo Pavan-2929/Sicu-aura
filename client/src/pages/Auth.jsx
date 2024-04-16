@@ -30,12 +30,12 @@ const Auth = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full m-14 mt-10 pl-14">
-        <div className=" flex justify-center w-full h-[100px]">
+      <div className="flex flex-col w-full m-12 mt-10">
+        <div className=" flex justify-center w-full h-[100px]" >
           <div className="flex justify-start">
-            <img src={auth} alt="" className="w-auto h-[96px]" />
+            <img src={auth} alt="" className="w-auto h-[96px] ml-12" />
           </div>
-          <div className="flex items-center w-full font-bold text-center justify-center h-full text-[30px] cursor-pointer text-deepPurple">
+          <div className=" flex items-center w-full font-bold -ml-24 text-center justify-center h-full text-[30px] cursor-pointer text-deepPurple">
             <div onClick={() => setToggleAuth("Sign-Up")}>
               <p
                 className={`${

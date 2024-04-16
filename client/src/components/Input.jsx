@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 const Input = ({ placeholder, name, value, onChange }) => {
   return (
-    <div className="input-container">
+    <div className="input-container flex justify-center">
       <input
         type="text"
         className={`border-b-2 ${
           value ? "border-black" : "border-gray"
-        } w-[340px] focus:outline-none`}
+        } w-[340px] focus:outline-none  `}
         placeholder={placeholder}
         name={name}
         value={value}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Input from "./Input";
+import axios from "axios";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,8 @@ const Signup = () => {
     hospitalRegistrationDate: "",
     numberOfAmbulanceAvailable: "",
     password: "",
-    confirmPassword: "", 
+    confirmPassword: "",
+    registrationCertificate: "",
   });
 
   const handleInputChange = (e) => {
@@ -26,11 +28,25 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = () => {
-    console.log(formData);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
 
-  console.log(formData);
+      if(formData.password !== formData.confirmPassword){
+        alert("Passwords do not match")
+        return
+      }
+      
+      const response = await axios.post(
+        "http://localhost:3000/api/hospital/create",
+        formData
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="">
@@ -89,7 +105,12 @@ const Signup = () => {
           value={formData.pincode}
           onChange={handleInputChange}
         />
-        <input type="file" />
+        <input
+          type="file"
+          name="registrationCertificate"
+          value={formData.registrationCertificate}
+          onChange={handleInputChange}
+        />
         <Input
           placeholder="Hospital Registration Date"
           name="hospitalRegistrationDate"
@@ -116,7 +137,11 @@ const Signup = () => {
         />
       </div>
       <div className="flex justify-center">
-        <button className="bg-deepPurple text-white p-2 font-semibold text-sm mt-10 rounded-lg px-6">
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="bg-deepPurple text-white p-2 font-semibold text-sm mt-10 rounded-lg px-6"
+        >
           Sign Up
         </button>
       </div>
