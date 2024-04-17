@@ -66,3 +66,24 @@ export const getHospital = async (req, res) => {
     });
   }
 };
+
+export const getAllHospitals = async (req, res) => {
+  try {
+    const hospitals = await Hospital.find();
+    return res.status(200).json(hospitals);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+}
+
+export const logout = async (req, res, next) => {
+  try {
+    await res.clearCookie("token");
+    res.status(200).json("Logout successfully");
+  } catch (error) {
+    next(error);
+  }
+};

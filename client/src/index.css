@@ -5,3 +5,7 @@
 .input-container input {
   transition: border-color 0.3s ease-in-out;
 }
+
+.fix{
+  border-radius: 14px;
+}

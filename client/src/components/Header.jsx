@@ -3,8 +3,10 @@ import navlogo from "../assets/navlogo.png";
 import navtext from "../assets/navtext.png";
 import axios from "axios";
 import profile from "../assets/profile.png";
-
+import {useNavigate} from "react-router-dom"
 const Header = () => {
+
+  const navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState({});
   const [error, setError] = useState(null); // State to store errors
 
@@ -27,6 +29,19 @@ const Header = () => {
     getUser();
   }, [true]);
 
+  const handleSignOut = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/hospital/logout"
+      );
+
+      console.log(response);
+      navigate("/")
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-darkblue text-white flex justify-around items-center">
       <div className="flex p-2 items-center">
@@ -38,7 +53,10 @@ const Header = () => {
           <img src={profile} alt="" />
           {currentUser.hospitalName}
         </div>
-        <button className="bg-[#302A41]  text-white p-2 font-semibold text-sm rounded-xl px-6">
+        <button
+          className="bg-[#302A41]  text-white p-2 font-semibold text-sm rounded-xl px-6 "
+          onClick={handleSignOut}
+        >
           Sign Out
         </button>
       </div>

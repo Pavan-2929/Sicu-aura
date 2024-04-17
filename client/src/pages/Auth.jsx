@@ -31,7 +31,7 @@ const Auth = () => {
         </div>
       </div>
       <div className="flex flex-col w-full m-12 mt-10">
-        <div className=" flex justify-center w-full h-[100px]" >
+        <div className=" flex justify-center w-full h-[100px]">
           <div className="flex justify-start">
             <img src={auth} alt="" className="w-auto h-[96px] ml-12" />
           </div>
@@ -51,7 +51,7 @@ const Auth = () => {
             <div onClick={() => setToggleAuth("Login")}>
               <p
                 className={`${
-                  toggleAuth === "Login" ? "text-gray" : "text-deepPurple"
+                  toggleAuth === "Login" ? "text-deepPurple" : "text-gray"
                 }`}
               >
                 Login
