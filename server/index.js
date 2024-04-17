@@ -8,7 +8,9 @@ const app = express();
 dotenv.config();
 
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(
+  cors({ credentials: true, origin: "https://sicu-aura-2929.onrender.com" })
+);
 app.listen(process.env.PORT, () => {
   console.log("listening on port " + process.env.PORT);
 });
