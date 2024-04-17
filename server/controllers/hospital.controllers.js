@@ -30,15 +30,16 @@ export const loginHospital = async (req, res) => {
       return res.status(401).json({ message: "Invalid password" });
     }
 
-    // Generate token
-    const token = jwt.sign({ email: hospital.email }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "1y",
-    });
+    const token = jwt.sign(
+      { email: hospital.email },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "1y",
+      }
+    );
 
-    // Calculate expiration time
     const expiryTime = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);
 
-    // Set cookie
     res.cookie("token", token, {
       expires: expiryTime,
       sameSite: "None",
@@ -49,5 +50,19 @@ export const loginHospital = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const getHospital = async (req, res) => {
+  try {
+
+    const hospital1 = await req.user
+    console.log(hospital1);
+    return res.status(200).json(hospital1);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Internal Server Error",
+    });
   }
 };

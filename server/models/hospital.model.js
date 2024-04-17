@@ -64,19 +64,6 @@ hospitalSchema.pre("save", async function () {
   }
 });
 
-hospitalSchema.methods.generateToken = async function () {
-  try {
-    return jwt.sign(
-      {
-        id: this._id,
-      },
-      process.env.JWT_SECRET_KEY,
-      { expiresIn: "1d" }
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 const Hospital = mongoose.model("Hospital", hospitalSchema);
 
