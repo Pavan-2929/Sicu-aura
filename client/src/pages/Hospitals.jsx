@@ -18,7 +18,7 @@ const Hospitals = () => {
   const getUser = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/hospital/get",
+        "https://sicu-aura-backend.onrender.com/api/hospital/get",
         { withCredentials: true }
       );
       dispatch(login());
@@ -33,7 +33,7 @@ const Hospitals = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:3000/api/hospital/get/all"
+        "https://sicu-aura-backend.onrender.com/api/hospital/get/all"
       );
       setHospitals(response.data);
       setLoading(false);

@@ -41,7 +41,7 @@ const Signup = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:3000/api/hospital/create",
+        "https://sicu-aura-backend.onrender.com/api/hospital/create",
         formData
       );
       alert("Sign Up successful")

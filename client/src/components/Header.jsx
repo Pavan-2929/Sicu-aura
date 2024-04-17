@@ -13,7 +13,7 @@ const Header = () => {
   const getUser = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/hospital/get",
+        "https://sicu-aura-backend.onrender.com/api/hospital/get",
         { withCredentials: true }
       );
 
@@ -32,7 +32,7 @@ const Header = () => {
   const handleSignOut = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/hospital/logout"
+        "https://sicu-aura-backend.onrender.com/api/hospital/logout"
       );
 
       console.log(response);
