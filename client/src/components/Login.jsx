@@ -8,9 +8,10 @@ const Login = () => {
     hospitalName: "",
     email: "",
     password: "",
-    code: "",
+    code: "sicu-aura",
   });
   const [isLoginCompleted, setIsLoginCompleted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,8 +22,10 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(false)
     e.preventDefault();
     try {
+      setLoading(true)
       setIsLoginCompleted(false);
       if (formData.code !== "sicu-aura") {
         alert("Enter valid code");
@@ -33,6 +36,7 @@ const Login = () => {
         formData,
         { withCredentials: true }
       );
+      setLoading(false)
       setFormData({
         hospitalName: "",
         email: "",
@@ -44,6 +48,7 @@ const Login = () => {
       console.log(response);
     } catch (error) {
       console.log(error);
+      setLoading(false)
       setIsLoginCompleted(false);
     }
   };
@@ -99,7 +104,7 @@ const Login = () => {
               onClick={handleSubmit}
               className="bg-deepPurple text-white p-2 font-semibold text-sm mt-10 rounded-lg px-6"
             >
-              Login
+              {loading ? "loading..." : "Login"}
             </button>
           </div>
         </div>

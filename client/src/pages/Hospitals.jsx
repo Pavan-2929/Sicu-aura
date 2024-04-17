@@ -13,6 +13,7 @@ const Hospitals = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [hospitals, setHospitals] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getUser = async () => {
     try {
@@ -28,12 +29,16 @@ const Hospitals = () => {
   };
 
   const getAllHospitals = async () => {
+    setLoading(false);
     try {
+      setLoading(true);
       const response = await axios.get(
         "http://localhost:3000/api/hospital/get/all"
       );
       setHospitals(response.data);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -52,7 +57,6 @@ const Hospitals = () => {
       hospital.hospitalName &&
       hospital.hospitalName.toLowerCase().includes(search.toLowerCase())
   );
-
 
   return (
     <div className="bg-[#F3FAFF] pb-10">
@@ -80,9 +84,13 @@ const Hospitals = () => {
           </div>
         </div>
       </div>
-      <div className="mx-20 mt-6">
-        <HospitalTable hospitals={filteredHospitals} />
-      </div>
+      {loading ? (
+        <h1 className="text-center mt-10 text-4xl font-semibold">Loading...</h1>
+      ) : (
+        <div className="mx-20 mt-6">
+          <HospitalTable hospitals={filteredHospitals} />
+        </div>
+      )}
     </div>
   );
 };

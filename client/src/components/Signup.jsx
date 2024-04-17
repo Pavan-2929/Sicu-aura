@@ -19,6 +19,7 @@ const Signup = () => {
     confirmPassword: "",
     registrationCertificate: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,21 +30,26 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(false);
     e.preventDefault();
     try {
+      setLoading(true);
 
-      if(formData.password !== formData.confirmPassword){
-        alert("Passwords do not match")
-        return
+      if (formData.password !== formData.confirmPassword) {
+        alert("Passwords do not match");
+        return;
       }
-      
+
       const response = await axios.post(
         "http://localhost:3000/api/hospital/create",
         formData
       );
-
+      alert("Sign Up successful")
       console.log(response);
+      setLoading(false);
     } catch (error) {
+      alert("Something went wrong")
+      setLoading(false);
       console.log(error);
     }
   };
@@ -142,7 +148,7 @@ const Signup = () => {
           onClick={handleSubmit}
           className="bg-deepPurple text-white p-2 font-semibold text-sm mt-10 rounded-lg px-6"
         >
-          Sign Up
+          {loading ? "Loading..." : "Sign Up"}
         </button>
       </div>
     </div>

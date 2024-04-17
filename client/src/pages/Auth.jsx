@@ -39,7 +39,7 @@ const Auth = () => {
             <div onClick={() => setToggleAuth("Sign-Up")}>
               <p
                 className={`${
-                  toggleAuth === "Sign-Up" ? "text-gray" : "text-deepPurple"
+                  toggleAuth === "Sign-Up" ? "text-deepPurple" : "text-gray"
                 }`}
               >
                 SignUp
